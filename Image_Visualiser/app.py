@@ -24,7 +24,7 @@ def get_gemini_response(input, image):
             response = model.generate_content(image)
         return response.text
     except Exception as e:
-        st.error(f"Error: {e}")
+        st.error(f"Error with Gemini API: {e}")
         return None
 
 # Streamlit App Setup
@@ -34,18 +34,23 @@ st.header("Pic Prompter")
 # Input and image upload
 input = st.text_input("Input Prompt: ", key="input")
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
-image = ""  # Default empty
+image = None
 
 if uploaded_file is not None:
-    image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image.", use_container_width=True)
+    try:
+        image = Image.open(uploaded_file)  # Open image with PIL
+        st.image(image, caption="Uploaded Image.", width=700)
+    except Exception as e:
+        st.error(f"Error loading image: {e}")
 
 # Submit button to process the image
 submit = st.button("Tell me about the image")
 
 if submit:
-    if image != "":
+    if image is not None:
         response = get_gemini_response(input, image)
         if response:
             st.subheader("The Response is")
             st.write(response)
+    else:
+        st.error("Please upload a valid image file.")
