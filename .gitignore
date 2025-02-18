@@ -4,8 +4,8 @@ Website/node_modules
 Website/server/node_modules
 Youtube_Transcript/.env
 Youtube_Transcript/venv
-Expense Tracker/venv
-Expense Tracker/.env
+Expense_Tracker/venv
+Expense_Tracker/.env
 ChatPdf/.env
 ChatPdf/venv
 Image_Visualiser/.env
