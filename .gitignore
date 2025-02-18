@@ -1,0 +1,14 @@
+Website/server/.env
+Website/.env
+Website/node_modules
+Website/server/node_modules
+Youtube_Transcript/.env
+Youtube_Transcript/venv
+Expense Tracker/venv
+Expense Tracker/.env
+ChatPdf/.env
+ChatPdf/venv
+Image_Visualiser/.env
+Image_Visualiser/venv
+Main_Chatbot/.env
+Main_Chatbot/venv

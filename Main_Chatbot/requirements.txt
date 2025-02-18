@@ -1,0 +1,6 @@
+streamlit
+google-generativeai
+google-api-python-client
+textblob
+reportlab
+python-dotenv
