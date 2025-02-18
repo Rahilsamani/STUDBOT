@@ -8,8 +8,8 @@ import google.generativeai as genai
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-# Initialize Gemini Pro Vision model
-model = genai.GenerativeModel('gemini-pro-vision')
+# Initialize Gemini 1.5 model (or another available model)
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 # Function to get Gemini response
 def get_gemini_response(prompt, image, user_input):

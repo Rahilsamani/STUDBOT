@@ -19,7 +19,7 @@ const Services = () => {
       heading: "PDF Query Assistance",
       description:
         "Simplify your document analysis process with ChatPDF, where you can upload PDF files and ask questions related to the content, allowing for quick extraction of key information and insights.",
-      whereToGo: "https://docchat-aehjsonnxwib6hxm9kmtic.streamlit.app/",
+      whereToGo: "https://chattingwithpdf.streamlit.app/",
       imageUrl: Service2,
     },
     {
