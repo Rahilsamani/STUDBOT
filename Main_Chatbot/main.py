@@ -14,8 +14,13 @@ st.set_page_config(page_title="Q&A with Gemini")
 # Load environment variables
 load_dotenv()
 
+# Ensure Google API key is loaded correctly
+api_key = os.getenv("GOOGLE_API_KEY")
+if not api_key:
+    st.error("Google API key is missing!")
+
 # Configure Gemini Pro model (ensure API key is correctly set)
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-pro")
 chat = model.start_chat(history=[])
 
@@ -24,12 +29,16 @@ def get_gemini_response(question):
     response = chat.send_message(question, stream=True)
     return [chunk.text for chunk in response]
 
-# Google Search API (without CSE ID)
+# Google Search API function
 def google_search(query):
-    service = build("customsearch", "v1", developerKey=os.getenv("GOOGLE_API_KEY"))
-    # We don't pass CSE ID and instead query Google's general search
-    res = service.cse().list(q=query).execute()
-    return [item['snippet'] for item in res.get('items', [])]
+    try:
+        service = build("customsearch", "v1", developerKey=api_key)
+        cse_id = "YOUR_CSE_ID"  # Replace with your CSE ID
+        res = service.cse().list(q=query, cx=cse_id).execute()
+        return [item['snippet'] for item in res.get('items', [])]
+    except Exception as e:
+        st.error(f"An error occurred while performing the search: {e}")
+        return []
 
 # Generate PDF of chat history
 def generate_pdf(chat_history):
@@ -52,12 +61,13 @@ def generate_pdf(chat_history):
     return buffer
 
 # Streamlit app setup
-st.header("Gemini LLM Application")
+st.header("STUDBOT LLM Application")
 
 if 'chat_history' not in st.session_state:
     st.session_state['chat_history'] = []
 
 input_query = st.text_input("Ask a question:")
+
 if st.button("Submit") and input_query:
     gemini_response = get_gemini_response(input_query)
     st.session_state['chat_history'].append(("You", input_query))
@@ -66,6 +76,7 @@ if st.button("Submit") and input_query:
         st.write(chunk)
         st.session_state['chat_history'].append(("Bot", chunk))
 
+    # Perform sentiment analysis
     sentiment = TextBlob(input_query).sentiment.polarity
     if -0.1 < sentiment < 0.1:
         search_results = google_search(input_query)
@@ -74,6 +85,8 @@ if st.button("Submit") and input_query:
             for result in search_results:
                 st.write(f"- {result}")
 
-    if st.button("Download Chat as PDF"):
-        pdf_buffer = generate_pdf(st.session_state['chat_history'])
-        st.download_button(label="Download PDF", data=pdf_buffer, file_name="chat_history.pdf", mime="application/pdf")
+# Generate PDF for chat history
+if st.button("Download Chat as PDF"):
+    pdf_buffer = generate_pdf(st.session_state['chat_history'])
+    st.download_button(label="Download PDF", data=pdf_buffer, file_name="chat_history.pdf", mime="application/pdf")
+

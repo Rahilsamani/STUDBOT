@@ -12,7 +12,7 @@ const Services = () => {
       heading: "Conversational AI Assistance",
       description:
         "Engage in natural conversations and seek instant assistance with our Chatbot feature, designed to provide helpful responses and guidance similar to ChatGPT, tailored to your needs and queries.",
-      whereToGo: "https://mz5rnpttgzabr83qnu3buf.streamlit.app/",
+      whereToGo: "https://studbot.streamlit.app/",
       imageUrl: Service1,
     },
     {
@@ -26,7 +26,7 @@ const Services = () => {
       heading: "Visual Intelligence",
       description:
         "Explore the world through images with our Image Identification Chatbot, capable of recognizing and providing details about various objects and landmarks, enhancing your visual understanding",
-      whereToGo: "http://localhost:8501/",
+      whereToGo: "https://imagevisualiser.streamlit.app/",
       imageUrl: Service3,
     },
     {
