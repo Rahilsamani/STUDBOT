@@ -3,7 +3,6 @@ import Service1 from "../assets/Images/service1.png";
 import Service2 from "../assets/Images/service2.png";
 import Service3 from "../assets/Images/ImageChatbot.png";
 import Service6 from "../assets/Images/service6.png";
-import Service7 from "../assets/Images/service7.png";
 import Footer from "../components/common/Footer";
 
 const Services = () => {
@@ -33,16 +32,8 @@ const Services = () => {
       heading: "Smart Expense Management",
       description:
         "Manage your finances effortlessly with our Expense Tracking service. Monitor expenses and gain insights into your spending habits. Perfect for businesses, freelancers, and individuals alike.",
-      whereToGo:
-        "https://trackyourexpense.streamlit.app/",
+      whereToGo: "https://trackyourexpense.streamlit.app/",
       imageUrl: Service6,
-    },
-    {
-      heading: "Generate Youtube Script",
-      description:
-        "Convert YouTube transcripts into detailed notes effortlessly. Perfect for studying, research, or reference, our tool streamlines your note-taking process.",
-      whereToGo: "https://ytranscriber-fxdybzxkxb6ahmemvmkzx6.streamlit.app/",
-      imageUrl: Service7,
     },
   ];
 
