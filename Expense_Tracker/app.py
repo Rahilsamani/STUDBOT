@@ -35,7 +35,7 @@ user_input = st.text_input("Input Prompt:", key="input")
 uploaded_file = st.file_uploader("Choose an invoice image (jpg, jpeg, png):", type=["jpg", "jpeg", "png"])
 
 if uploaded_file:
-    st.image(Image.open(uploaded_file), caption="Uploaded Image", use_column_width=True)
+    st.image(Image.open(uploaded_file), caption="Uploaded Image", use_container_width=True)
 
 if st.button("Analyze Invoice"):
     image_data = input_image_details(uploaded_file)
@@ -44,4 +44,3 @@ if st.button("Analyze Invoice"):
             response = get_gemini_response(input_prompt, image_data, user_input)
             st.subheader("Invoice Analysis Result:")
             st.write(response)
-

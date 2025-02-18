@@ -34,7 +34,7 @@ const Services = () => {
       description:
         "Manage your finances effortlessly with our Expense Tracking service. Monitor expenses and gain insights into your spending habits. Perfect for businesses, freelancers, and individuals alike.",
       whereToGo:
-        "https://student-expense-tracker-eihchlnimamngnzl7zqmfj.streamlit.app/",
+        "https://trackyourexpense.streamlit.app/",
       imageUrl: Service6,
     },
     {
